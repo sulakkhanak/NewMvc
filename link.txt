@@ -1,1 +1,3 @@
 https://www.aspsnippets.com/Articles/Web-API-MVC-CRUD-Select-Insert-Edit-Update-and-Delete-using-Web-API-and-jQuery-AJAX-in-ASPNet-MVC.aspx
+
+http://www.dotnetfunda.com/articles/show/2340/crud-operation-using-web-api-and-mvc4
