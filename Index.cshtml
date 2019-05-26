@@ -1,0 +1,107 @@
+﻿@model WebMvc_Test.Models.Person
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<h2>Index</h2>
+<div class="per_info">
+
+    <div class="row">
+        <label class="col-md-2 control-label">Name :</label>
+        <div class="col-md-5">
+            @Html.TextBoxFor(p => p.Name)
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">Telephone :</label>
+        <div class="col-md-5">
+            @Html.TextBoxFor(p => p.Telephone)
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">NIC No. : </label>
+        <div class="col-md-5">
+            @Html.TextBoxFor(p => p.NICNo)
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">Address :</label>
+        <div class="col-md-5">
+            @Html.TextBoxFor(p => p.Address)
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">Email :</label>
+        <div class="col-md-5">
+            @Html.TextBoxFor(p => p.Email)
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label" for="btnSubmit"></label>
+        <div class="col-md-5">
+            <button id="btnSubmit" name="btnSubmit" class="btn btn-primary">Submit</button>
+            @*@Html.ActionLink("Back to List", "Test")*@
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+    .per_info {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .row {
+        margin-bottom: 15px;
+    }
+</style>
+
+<script>
+
+    $("#btnSubmit").click(function () {
+
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:51293/api/Test/CreatePerson',
+            dataType: 'json',
+            data: {
+                Name: $("#Name").val(),
+                Telephone: $("#Telephone").val(),
+                NICNo: $("#NICNo").val(),
+                Address: $("#Address").val(),
+                Email: $("#Email").val()
+            },
+            success: CreatePersonOnSuccess
+        });
+
+    });
+
+    function CreatePersonOnSuccess() {
+
+        alert("Created New Person Successfully");
+        clear();
+    }
+
+    function clear() {
+        document.getElementById("Name").value = '';
+        document.getElementById("Telephone").value = '';
+        document.getElementById("NICNo").value = '';
+        document.getElementById("Address").value = '';
+        document.getElementById("Email").value = '';
+
+        }
+
+</script>
+

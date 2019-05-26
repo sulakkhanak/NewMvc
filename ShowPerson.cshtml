@@ -1,0 +1,73 @@
+﻿@model WebMvc_Test.Models.Person
+@{
+    ViewBag.Title = "ShowPerson";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<h2>ShowPerson</h2>
+
+<div>
+    <table class="table table-bordered" id="tblContacts">
+        <tr>
+            <th style="display:none;">
+                PersonID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Telephone
+            </th>
+            <th>
+                NICNo
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Email
+            </th>
+        </tr>
+
+    </table>
+
+</div>
+
+<style>
+    .per_info {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .row {
+        margin-bottom: 15px;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+
+        $.get('http://localhost:51293/api/Test/GetPerson', {}, function (data) {
+            var tblContacts = $("#tblContacts");
+            $.each(data, function (index, item) {
+                var tr = $("<tr></tr>");
+                tr.html(("<td style=display:none;>" + item.PersonID + "</td>")
+                + " " + ("<td>" + item.Name + "</td>")
+                + " " + ("<td>" + item.Telephone + "</td>")
+                + " " + ("<td>" + item.NICNo + "</td>")
+                + " " + ("<td>" + item.Address + "</td>")
+                + " " + ("<td>" + item.Email + "</td>"));
+                tblContacts.append(tr);
+            });
+        });
+
+
+    });
+
+
+</script>
